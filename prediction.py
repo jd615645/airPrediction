@@ -4,7 +4,6 @@ import csv
 import cv2
 import sys
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn import datasets, linear_model
 import math
 import json
