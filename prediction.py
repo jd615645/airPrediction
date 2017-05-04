@@ -53,6 +53,14 @@ def get_mod(local):
 
     b_0 = regr.intercept_
     th  = regr.coef_
+    
+    for k in range(len(list)):
+      xset = np.array(list[k])
+      nptresult= np.array(result[k])
+      # print("预测数据{0}".format( b_0 + np.dot(th,xset)))
+      # print("真实数据{0}".format(nptresult))
+      error= b_0 + np.dot(th,xset)-nptresult
+      print("训练集的实际误差{0}".format(error))
 
     sol = {
       'local': local,
