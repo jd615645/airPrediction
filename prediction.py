@@ -20,22 +20,22 @@ def get_mod(local):
 
     for year in years:
         filename = './EPAhistory/' + year + '年' + local + '.csv'
-        # 把讀檔路徑转换为utf-8格式
+        # 把讀檔路徑轉為为utf-8格式
         ufilename = unicode(filename , 'utf8')
 
         try:
           with open(ufilename, 'r') as f:
-              #dat中所有字符串读入data
+              #dat中所有字符串讀入data
               data = f.readlines()
               for line in data:
-                  #将单个数据分隔开存好
+                  #將單個數據分隔开存好
                   odom = line.split(',')
                   colum=len(odom)
                   if 'PM2.5'in odom:
                       try:
-                          #第三个开始开始数据  一直取9个数
+                          #第三個開始數據  一直取9個數
                           lists= map(int, odom[3:12])
-                          #取第10个数
+                          #取第10個數
                           results= map(int, odom[12:13])
                           list.append(lists)
                           result.append(results)
@@ -45,7 +45,7 @@ def get_mod(local):
         except:
             print(ufilename, 'is not found!')
 
-    # print('有{0}個训練數据'.format(len(list)))
+    # print('有{0}個續練練數據'.format(len(list)))
 
     regr = linear_model.LinearRegression()
     # 訓練模型了
@@ -57,10 +57,10 @@ def get_mod(local):
     for k in range(len(list)):
       xset = np.array(list[k])
       nptresult= np.array(result[k])
-      # print("预测数据{0}".format( b_0 + np.dot(th,xset)))
-      # print("真实数据{0}".format(nptresult))
+      # print("預測數據{0}".format( b_0 + np.dot(th,xset)))
+      # print("真實數據{0}".format(nptresult))
       error= b_0 + np.dot(th,xset)-nptresult
-      print("训练集的实际误差{0}".format(error))
+      print("續練练集的實際誤差{0}".format(error))
 
     sol = {
       'local': local,
